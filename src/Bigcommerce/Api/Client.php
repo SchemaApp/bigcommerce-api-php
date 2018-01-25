@@ -479,7 +479,7 @@ class Client
      */
     public static function getProductImages($id)
     {
-        return self::getCollection('/products/' . $id . '/images/', 'ProductImage');
+        return self::getCollection('/products/' . $id . '/images', 'ProductImage');
     }
 
     /**
@@ -490,7 +490,7 @@ class Client
      */
     public static function getProductCustomFields($id)
     {
-        return self::getCollection('/products/' . $id . '/customfields/', 'ProductCustomField');
+        return self::getCollection('/products/' . $id . '/customfields', 'ProductCustomField');
     }
 
     /**
@@ -524,7 +524,7 @@ class Client
      */
     public static function getProductReviews($id)
     {
-        return self::getCollection('/products/' . $id . '/reviews/', 'ProductReview');
+        return self::getCollection('/products/' . $id . '/reviews', 'ProductReview');
     }
 
     /**
@@ -1951,7 +1951,7 @@ class Client
      */
     public static function getShippingZones()
     {
-        return self::getCollection('/shipping/zones/', 'ShippingZone');
+        return self::getCollection('/shipping/zones', 'ShippingZone');
     }
 
     /**
