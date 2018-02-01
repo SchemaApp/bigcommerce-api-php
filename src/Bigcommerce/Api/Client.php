@@ -1540,6 +1540,11 @@ class Client
         return self::deleteResource('/products/' . $productId . '/images/' . $imageId);
     }
 
+    public static function getBlogPosts() {
+        return self::getCollection('/blog/posts', 'Blog');
+    }
+
+
     /**
      * Get all content pages
      *
