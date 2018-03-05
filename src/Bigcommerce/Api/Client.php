@@ -484,7 +484,7 @@ class Client
     public static function getProducts($filter = array())
     {
         $filter = Filter::create($filter);
-        return self::getCollection('/products' . $filter->toQuery(), 'Product');
+        return self::getCollection('/catalog/products' . $filter->toQuery(), 'Product');
     }
 
     /**
@@ -495,7 +495,7 @@ class Client
      */
     public static function getProductImages($id)
     {
-        return self::getCollection('/products/' . $id . '/images');
+        return self::getCollection('/catalog/products/' . $id . '/images');
     }
 
     /**
@@ -506,7 +506,7 @@ class Client
      */
     public static function getProductCustomFields($id)
     {
-        return self::getCollection('/products/' . $id . '/customfields', 'ProductCustomField');
+        return self::getCollection('/catalog/products/' . $id . '/customfields', 'ProductCustomField');
     }
 
     /**
@@ -517,7 +517,7 @@ class Client
      */
     public static function getProductCustomField($product_id, $id)
     {
-        return self::getResource('/products/' . $product_id . '/customfields/' . $id, 'ProductCustomField');
+        return self::getResource('catalog/products/' . $product_id . '/customfields/' . $id, 'ProductCustomField');
     }
 
     /**
@@ -540,7 +540,7 @@ class Client
      */
     public static function getProductReviews($id)
     {
-        return self::getCollection('/products/' . $id . '/reviews');
+        return self::getCollection('catalog/products/' . $id . '/reviews');
     }
 
     /**
