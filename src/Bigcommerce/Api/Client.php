@@ -62,7 +62,7 @@ class Client
     static private $store_hash;
     static private $auth_token;
     static private $client_secret;
-    static private $stores_prefix = '/stores/%s/v2';
+    static private $stores_prefix = '/stores/%s/v3';
     static private $api_url = 'https://api.bigcommerce.com';
     static private $login_url = 'https://login.bigcommerce.com';
 
@@ -260,6 +260,10 @@ class Client
     {
         $response = self::connection()->get(self::$api_path . $path);
 
+        if ($resource === 'Resource') {
+            return $response;
+        }
+
         return self::mapCollection($resource, $response);
     }
 
@@ -273,6 +277,10 @@ class Client
     public static function getResource($path, $resource = 'Resource')
     {
         $response = self::connection()->get(self::$api_path . $path);
+
+        if ($resource === 'Resource') {
+            return $response;
+        }
 
         return self::mapResource($resource, $response);
     }
@@ -479,7 +487,7 @@ class Client
      */
     public static function getProductImages($id)
     {
-        return self::getCollection('/products/' . $id . '/images', 'ProductImage');
+        return self::getCollection('/products/' . $id . '/images');
     }
 
     /**
@@ -524,7 +532,7 @@ class Client
      */
     public static function getProductReviews($id)
     {
-        return self::getCollection('/products/' . $id . '/reviews', 'ProductReview');
+        return self::getCollection('/products/' . $id . '/reviews');
     }
 
     /**
@@ -572,7 +580,7 @@ class Client
      */
     public static function getProduct($id)
     {
-        return self::getResource('/products/' . $id, 'Product');
+        return self::getResource('/products/' . $id);
     }
 
     /**
@@ -1308,7 +1316,7 @@ class Client
 
     public static function getStore()
     {
-        $response = self::connection()->get(self::$api_path . '/store');
+        $response = self::connection()->get(self::$api_url . sprintf('/stores/%s/v2', self::$store_hash) . '/store');
         return $response;
     }
 
@@ -1552,7 +1560,7 @@ class Client
      */
     public static function getPages()
     {
-        return self::getCollection('/pages', 'Page');
+        return self::getCollection('/pages');
     }
 
     /**
@@ -1563,7 +1571,7 @@ class Client
      */
     public static function getPage($pageId)
     {
-        return self::getResource('/pages/' . $pageId, 'Page');
+        return self::getResource('/pages/' . $pageId);
     }
 
     /**
