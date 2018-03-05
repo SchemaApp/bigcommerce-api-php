@@ -83,6 +83,14 @@ class Client
         }
     }
 
+    public static function setV2($version) {
+        if ($version) {
+            self::$api_path = self::$api_url . sprintf("stores/%s/v2", self::$store_hash);
+        } else {
+            self::$api_path = self::$api_url . sprintf("stores/%s/v3", self::$store_hash);
+        }
+    }
+
     /**
      * Configure the API client with the required OAuth credentials.
      *
