@@ -62,7 +62,7 @@ class Client
     static private $store_hash;
     static private $auth_token;
     static private $client_secret;
-    static private $stores_prefix = '/stores/%s/v3';
+    static private $stores_prefix = '/stores/%s/v2';
     static private $api_url = 'https://api.bigcommerce.com';
     static private $login_url = 'https://login.bigcommerce.com';
 
@@ -517,7 +517,7 @@ class Client
      */
     public static function getProductCustomField($product_id, $id)
     {
-        return self::getResource('catalog/products/' . $product_id . '/customfields/' . $id, 'ProductCustomField');
+        return self::getResource('/catalog/products/' . $product_id . '/customfields/' . $id, 'ProductCustomField');
     }
 
     /**
@@ -540,7 +540,7 @@ class Client
      */
     public static function getProductReviews($id)
     {
-        return self::getCollection('catalog/products/' . $id . '/reviews');
+        return self::getCollection('/catalog/products/' . $id . '/reviews');
     }
 
     /**
@@ -588,7 +588,7 @@ class Client
      */
     public static function getProduct($id)
     {
-        return self::getResource('/products/' . $id);
+        return self::getResource('/catalog/products/' . $id);
     }
 
     /**
@@ -1557,7 +1557,16 @@ class Client
     }
 
     public static function getBlogPosts() {
-        return self::getCollection('/blog/posts', 'Blog');
+        return self::getCollection('/blog/posts', 'Resource');
+    }
+
+    /**
+     * Get a single Blog Post given its ID
+     * @param $id
+     * @return mixed
+     */
+    public static function getBlogPost($id) {
+        return self::getResource("/blog/posts/$id", 'Resource');
     }
 
 
