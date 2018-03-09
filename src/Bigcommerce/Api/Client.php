@@ -1556,8 +1556,10 @@ class Client
         return self::deleteResource('/products/' . $productId . '/images/' . $imageId);
     }
 
-    public static function getBlogPosts() {
-        return self::getCollection('/blog/posts', 'Resource');
+    public static function getBlogPosts($filter = array()) {
+
+        $filter = Filter::create($filter);
+        return self::getCollection('/blog/posts' . $filter , 'Resource');
     }
 
     /**
@@ -1575,9 +1577,10 @@ class Client
      *
      * @return mixed
      */
-    public static function getPages()
+    public static function getPages($filter = array())
     {
-        return self::getCollection('/pages');
+        $filter = Filter::create($filter);
+        return self::getCollection('/pages' . $filter->toQuery());
     }
 
     /**
@@ -1854,7 +1857,7 @@ class Client
      */
     public static function getProductOptions($productId)
     {
-        return self::getCollection('/products/' . $productId . '/options');
+        return self::getCollection('/catalog/products/' . $productId . '/variants');
     }
 
     /**
@@ -1918,7 +1921,7 @@ class Client
             $object
         );
     }
-    
+
     /**
      * Returns all webhooks.
      *
@@ -1928,7 +1931,7 @@ class Client
     {
         return self::getCollection('/hooks');
     }
-    
+
     /**
      * Returns data for a specific web-hook.
      *
@@ -1939,7 +1942,7 @@ class Client
     {
         return self::getResource('/hooks/' . $id);
     }
-    
+
     /**
      * Creates a web-hook.
      *
@@ -1950,7 +1953,7 @@ class Client
     {
         return self::createResource('/hooks', $object);
     }
-    
+
     /**
      * Updates the given webhook.
      *
@@ -1962,7 +1965,7 @@ class Client
     {
         return self::updateResource('/hooks/' . $id, $object);
     }
-    
+
     /**
      * Delete the given webhook.
      *
