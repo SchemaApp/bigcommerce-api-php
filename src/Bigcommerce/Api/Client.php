@@ -484,7 +484,7 @@ class Client
     public static function getProducts($filter = array())
     {
         $filter = Filter::create($filter);
-        return self::getCollection('/catalog/products' . $filter->toQuery(), 'Product');
+        return self::getCollection('/catalog/products' . $filter->toQuery(), 'Resource');
     }
 
     /**
