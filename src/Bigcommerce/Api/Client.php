@@ -1559,7 +1559,7 @@ class Client
     public static function getBlogPosts($filter = array()) {
 
         $filter = Filter::create($filter);
-        return self::getCollection('/blog/posts' . $filter , 'Resource');
+        return self::getCollection('/blog/posts' . $filter->toQuery() , 'Resource');
     }
 
     /**
